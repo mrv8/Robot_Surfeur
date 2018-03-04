@@ -13,7 +13,8 @@ public interface DriverSelenium {
 	WebDriver driver = new FirefoxDriver();
 	JavascriptExecutor js = (JavascriptExecutor)driver;
 	
-	List<String> visit = new ArrayList<String>();
+	ArrayList<String> visit = new ArrayList<String>();
+	ArrayList<String> motCle = new ArrayList<String>();
 	
 	public void OpenPage(String url) throws InterruptedException;
 	

@@ -17,7 +17,7 @@ public class main {
 		
 		
 		System.setProperty("webdriver.gecko.driver", "D:\\Selenium\\FirefoxDrive\\geckodriver.exe");
-		String url = "https://feg.univ-amu.fr/node";
+		String url = "https://fr.wikipedia.org/wiki/Cheval";
 
 		//NavigationRandom NR = new NavigationRandom();
 		/*NR.OpenPage(url);

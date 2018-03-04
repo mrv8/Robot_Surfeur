@@ -12,8 +12,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class navigationScore implements DriverSelenium {
 	
-	public String MotCle = "methodes";
-	
 	public void OpenPage(String url) throws InterruptedException {
 
 		driver.get(url); //ouvre le navigateur avec l'url passé en parametre		
@@ -21,27 +19,24 @@ public class navigationScore implements DriverSelenium {
 		sleep(2000); // pause de 2 secondes pour que la page ce charge à 1000% 
 	}
 	
+	
+	
 	public void findHref() throws InterruptedException{
 
 		int cpt = 0;
 		boolean visite = false;
-
+		motCle.add("Cheval");
+		motCle.add("Pur");
 		while(visite != true) {
 
 			int i=0;
 
  			List<WebElement> AllLinks = driver.findElements(By.xpath("//*[@href]"));// recup tous les lien avec le tag "a"
 			
-			List<WebElement> pt = Scoring.points(AllLinks, MotCle);
-
-			/*for(WebElement we : pt) {
-				System.out.println(we.getAttribute("href"));
-			}*/
+			List<WebElement> pt = Scoring.points2(AllLinks, motCle); // appelle de la fonction qui va scorer les liens entre 0 et 1
 			
-		    WebElement LinkChoice = pt.get(0);  // choisit un lien au hasard dans la liste des liens
+		    WebElement LinkChoice = pt.get(1);  // choisit un lien au hasard dans la liste des liens
 			String href = LinkChoice.getAttribute("href"); // recup la valeur href du lien 250
-			
-			System.out.println(href);
 			
 			scrolling(findPosition(LinkChoice));
 			driver.get(href);
@@ -52,9 +47,7 @@ public class navigationScore implements DriverSelenium {
 				cpt = 1;
 			}
 			else
-				visite = dejaVisite(href);
-
-			
+				visite = dejaVisite(href);			
 		}
 		System.out.println("Page déjà visiter");
 	}
