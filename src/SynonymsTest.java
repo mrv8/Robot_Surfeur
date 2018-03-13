@@ -1,6 +1,6 @@
 import edu.unice.polytech.kis.semwiktionary.model.Word;
 
-public class valentin {
+public class SynonymsTest {
 	
 	public static void main(String[] args)
 	{
