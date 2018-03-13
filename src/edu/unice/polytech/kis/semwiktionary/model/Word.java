@@ -1,10 +1,7 @@
 package edu.unice.polytech.kis.semwiktionary.model;
 
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.LinkedList;
+import java.util.*;
 
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
@@ -126,13 +123,7 @@ public class Word extends NodeMappedObject {
 	 */
 	public Collection<Word> getSynonyms()
 	{
-
-		if (this.get(Relation.SYNONYM) != null) {
-			return this.get(Relation.SYNONYM);
-		}else
-		{
-			return null;
-		}
+		return this.get(Relation.SYNONYM);
 	}
 	
 	/** Returns all antonyms of this Word.
