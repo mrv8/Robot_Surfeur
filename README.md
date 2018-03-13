@@ -29,7 +29,7 @@ Crédits
 ### Tuteurs ###
 - Jean CAUSSANEL, directeur de la MIAGE d'Aix-Marseille.
 
-### Remerciements à ###
+### API utilisées ###
 - [SemWiktionnary](http://semwiktionary.org) JAVA api using Wikitionnary to get synonyms
 - [Selenium](http://seleniumhq.org) JAVA API to navigate on website with WebBrowser
 
