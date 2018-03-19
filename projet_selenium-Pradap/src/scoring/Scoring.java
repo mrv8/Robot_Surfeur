@@ -3,13 +3,8 @@ package scoring;
 import java.util.ArrayList;
 //import Application.Lien;
 import java.util.List;
-import java.util.ListIterator;
-
-import org.openqa.selenium.WebElement;
 
 import extraction.Lien;
-import extraction.Page;
-import navigation.NavigationRandom;
 
 public class Scoring implements Ponderation{
 	
@@ -30,7 +25,7 @@ public class Scoring implements Ponderation{
         double[] tabPourcentage = new double[list.size()];
         
         ArrayList<Lien> AllLinksWithKeyWord = new ArrayList<Lien>();
-        Lien FinalLink;
+        
         
         //ArrayList<Integer> positionsDeChaqueMotCle = new ArrayList<Integer>();
         //ArrayList<Integer> positions = new ArrayList<Integer>();
@@ -59,7 +54,7 @@ public class Scoring implements Ponderation{
 			AllLinksWithKeyWord.add(LinkChoice);
 		}
 		
-		return FinalLink = meilleur_lien(tabPourcentage, AllLinksWithKeyWord);
+		return meilleur_lien(tabPourcentage, AllLinksWithKeyWord);
     }
 
 	public Lien meilleur_lien(double [] tabPourcentage, ArrayList<Lien> AllLinksWithKeyWord )
