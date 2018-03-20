@@ -26,7 +26,23 @@ public class Historique {
 		Iterator<Lien> it = PageDejaVisite.iterator();
 		
 		while(it.hasNext()) {
-			if (it.next().getTexte().equals(LienCourant.getTexte())) {
+			if (it.next().getUrl().equals(LienCourant.getUrl())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param LienCourant
+	 * @return
+	 */
+	public boolean TestScoreDiminue(Lien LienCourant) {
+		Iterator<Lien> it = PageDejaVisite.iterator();
+		
+		while(it.hasNext()) {
+			if (it.next().getScore()>(LienCourant.getScore())) {
 				return true;
 			}
 		}

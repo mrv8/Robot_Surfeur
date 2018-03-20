@@ -13,7 +13,7 @@ public interface Ponderation {
 	
 	public Lien points(List<Lien> list, List<String> motcle);
 		
-	public Lien meilleur_lien(double [] tabPourcentage, ArrayList<Lien> allLinksWithKeyWord);
+	public Lien meilleur_lien(List<Lien> allLinksWithKeyWord);
 
 	public int nombreMots(String href);
 	

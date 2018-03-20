@@ -24,7 +24,8 @@ public class Scoring implements Ponderation{
         return (tab.length-1);
     }
 
-    public Lien points(List<Lien> list, List<String> motcle){
+    @SuppressWarnings("static-access")
+	public Lien points(List<Lien> list, List<String> motcle){
 
         ArrayList<Integer> Points = new ArrayList<Integer>();
         double[] tabPourcentage = new double[list.size()];
@@ -39,7 +40,6 @@ public class Scoring implements Ponderation{
         {
             Lien LinkChoice = list.get(i);
             String Texte = LinkChoice.getTexte();
-
             Points.add(i,0);
             	
             //int max = href.length(); // position max du premier mot cle du href
@@ -54,29 +54,25 @@ public class Scoring implements Ponderation{
                 //if(positionsDeChaqueMotCle.get(j) < max)
                 //   max = positionsDeChaqueMotCle.get(j);
             }
-            
-            tabPourcentage[i]=pourcentage(nombreMots(Texte),Points.get(i));
+            LinkChoice.setScore(pourcentage(nombreMots(Texte),Points.get(i)));
 			AllLinksWithKeyWord.add(LinkChoice);
 		}
 		
-		return FinalLink = meilleur_lien(tabPourcentage, AllLinksWithKeyWord);
+		return FinalLink = meilleur_lien(AllLinksWithKeyWord);
     }
 
-	public Lien meilleur_lien(double [] tabPourcentage, ArrayList<Lien> AllLinksWithKeyWord )
+	public Lien meilleur_lien(List<Lien> list )
 	{
 		double max = 0.0;
 		int indice = 0;
-		for(int i = 0; i<tabPourcentage.length; i++)
+		for(int i = 0; i<list.size(); i++)
 		{	
-			
-			if(tabPourcentage[i] > max) 
-			{
-				max = tabPourcentage[i];
+			if(list.get(i).getScore()> max) {
+				max = list.get(i).getScore();
 				indice = i;
-				
 			}
 		}
-		return AllLinksWithKeyWord.get(indice);
+		return list.get(indice);
 	}
 
     /*calcule le nombre de mots dans une chaine*/
@@ -86,7 +82,7 @@ public class Scoring implements Ponderation{
         for(int l=0;l<href.length();l++) {
             x[l]=href.charAt(l);
             if((x[l]=='\\') || (x[l]=='*') || (x[l]=='.') || (x[l]=='+') || (x[l]==',') || (x[l]=='?') || (x[l]==']') || (x[l]=='[')
-                    || (x[l]==')') || (x[l]=='(') || (x[l]=='}') || (x[l]=='{') || (x[l]==':') || (x[l]=='_') || (x[l]=='#') || (x[l]=='-')
+                    || (x[l]=='}') || (x[l]=='{') || (x[l]==':') || (x[l]=='_') || (x[l]=='#') || (x[l]=='-')
                     || (x[l]=='&') || (x[l]=='!') || (x[l]=='=') || (x[l]=='/'))
                 x[l]=' ';
         }

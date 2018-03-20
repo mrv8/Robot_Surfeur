@@ -49,13 +49,14 @@ public class Navigation{
     public void NavigationScore(String[] motCles){
     	
         int cpt = 0;
-        boolean visite = false;
+        boolean PageDejaVisite = false;
+        boolean ScoreDeLienQuiDiminue = false;
         
         for (String unMot : motCles) {
             motCle.add(unMot);
         }
 
-        while (visite != true)
+        while (PageDejaVisite != true && ScoreDeLienQuiDiminue != true)
         {
         	
             pageCourante.clearLiens();
@@ -66,21 +67,27 @@ public class Navigation{
             
             System.out.println(lienFinal.getUrl());
             System.out.println(lienFinal.getTexte());
+            System.out.println(lienFinal.getScore());
             
             scrolling(lien.positionLienXY(lienFinal));
-            
+            lienFinal.click();
             driver.get(lienFinal.getUrl());
-            new WebDriverWait(driver, 1, 500);
+            
+            sleep(500);
 
             if (cpt == 0) {
             	hist.addLinkInHistorique(lienFinal);
             } else {
-                visite = hist.TestPageDejaVisite(lienFinal);
+            	PageDejaVisite = hist.TestPageDejaVisite(lienFinal);
+            	ScoreDeLienQuiDiminue = hist.TestScoreDiminue(lienFinal);
                 hist.addLinkInHistorique(lienFinal);
             }
             cpt++;
         } 
-        MessageFinSiBoucle(hist.getPageDejaVisite().get(cpt-2));
+        if(PageDejaVisite == true)
+        	MessageFinSiBoucle(hist.getPageDejaVisite().get(cpt-2));
+        else
+        	MessageSiScoreInf(hist.getPageDejaVisite().get(cpt-2));
     }
 
     public void NavigationRandom() {
@@ -102,7 +109,7 @@ public class Navigation{
               scrolling(lien.positionLienXY(lienFinal));
               driver.get(lienFinal.getUrl());
               
-              new WebDriverWait(driver, 500);
+              sleep(500);
 
               if (cpt == 0) {
             	  hist.addLinkInHistorique(lienFinal);
@@ -115,9 +122,14 @@ public class Navigation{
           MessageFinSiBoucle(hist.getPageDejaVisite().get(cpt-1));
     }
     
+    public void MessageSiScoreInf(Lien lien) {
+    	JOptionPane jop1 = new JOptionPane();
+        JOptionPane.showMessageDialog(null, "La page trouvé possède un score inférieur donc on revient en arrière !", "Message de Fin", JOptionPane.INFORMATION_MESSAGE);
+        driver.get(lien.getUrl());
+    }
     public void MessageFinSiBoucle(Lien lien) {
     	JOptionPane jop1 = new JOptionPane();
-        JOptionPane.showMessageDialog(null, "La page trouvé à déjà été visiter !", "Message de Fin", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "La page trouvé à déjà été visiter, vous allez être redirigé sur la page précédente !", "Message de Fin", JOptionPane.INFORMATION_MESSAGE);
         driver.get(lien.getUrl());
     }
      
@@ -131,24 +143,14 @@ public class Navigation{
                 break;
             ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,200)", ""); //y value '200' can be altered
             y2 += 200;
-            new WebDriverWait(driver, 2);
+            sleep(150);
         }
-            new WebDriverWait(driver, 2);
+            sleep(100);
     }
 
-    public void sleep(int time) throws InterruptedException{
+    public void sleep(int time){
             new WebDriverWait(driver, time);
     }
-
-/*    public boolean dejaVisite(String url) {
-
-        for(String tmp : visit) {
-            if (tmp.equals(url)) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public void close() {
 

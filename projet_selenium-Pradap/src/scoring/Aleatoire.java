@@ -38,7 +38,7 @@ public class Aleatoire implements Ponderation {
 	}
 
 	@Override
-	public Lien meilleur_lien(double[] tabPourcentage, ArrayList<Lien> allLinksWithKeyWord) {
+	public Lien meilleur_lien(List<Lien> allLinksWithKeyWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}

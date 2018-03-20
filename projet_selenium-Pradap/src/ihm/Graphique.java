@@ -15,8 +15,9 @@ public abstract class Graphique extends JFrame implements MouseListener {
     public static void main(String[] args) /*throws InterruptedException*/ {
         //interface
         JFrame fenetre = new JFrame();
-        fenetre.setTitle("Robot surfer :p");
+        fenetre.setTitle("Robot surfer");
         fenetre.setSize(600, 500);
+        fenetre.setLocationRelativeTo(null);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setVisible(true);
         JPanel pan = new JPanel();
