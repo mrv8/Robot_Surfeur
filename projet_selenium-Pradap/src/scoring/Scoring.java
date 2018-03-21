@@ -54,11 +54,20 @@ public class Scoring implements Ponderation{
                 //if(positionsDeChaqueMotCle.get(j) < max)
                 //   max = positionsDeChaqueMotCle.get(j);
             }
-            LinkChoice.setScore(pourcentage(nombreMots(Texte),Points.get(i)));
-			AllLinksWithKeyWord.add(LinkChoice);
-		}
+		int ptn = Points.get(i);
+		if(ptn == 0)
+			Points.set(i,ptn);
+		else if(ptn == 1)
+			Points.set(i,ptn*1);
+		else if(ptn == 2)
+			Points.set(i,ptn*50);
+		else
+			Points.set(i,ptn*100);
+            	LinkChoice.setScore(pourcentage(nombreMots(Texte),Points.get(i)));
+		AllLinksWithKeyWord.add(LinkChoice);
+	}
 		
-		return FinalLink = meilleur_lien(AllLinksWithKeyWord);
+	return FinalLink = meilleur_lien(AllLinksWithKeyWord);
     }
 
 	public Lien meilleur_lien(List<Lien> list )
