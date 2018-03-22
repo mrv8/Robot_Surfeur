@@ -1,12 +1,19 @@
 package navigation;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.List;
 
-
+/**
+ * 
+ *
+ *
+ */
 public class NavigationMoteur {
+	/**
+	 * Initialisation de la navigation
+	 * @param key_word
+	 */
     public NavigationMoteur(String key_word){
     	System.setProperty("webdriver.gecko.driver", "D:\\Selenium\\FirefoxDrive\\geckodriver.exe");
         FirefoxDriver driver = new FirefoxDriver();
@@ -20,6 +27,11 @@ public class NavigationMoteur {
 
         System.out.println("Title: " + driver.getTitle());
     }
+    
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) /* throws  InterruptedException*/ {
        /* System.setProperty("webdriver.gecko.driver", "C:\\Users\\sitha\\Documents\\MIAGE\\Projet\\geckodriver.exe");
         FirefoxDriver driver = new FirefoxDriver();

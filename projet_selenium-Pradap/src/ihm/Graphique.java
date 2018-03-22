@@ -1,25 +1,38 @@
 package ihm;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
-import navigation.NavigationRandom;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 import navigation.Navigation;
 
-
+/**
+ * 
+ * @author valen
+ *
+ */
 public abstract class Graphique extends JFrame implements MouseListener {
 
-    public static void main(String[] args) /*throws InterruptedException*/ {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Méthode principale du programme, celle-ci génére une interface homme-machine.
+	 * @param args
+	 */
+	public static void main(String[] args) /*throws InterruptedException*/ {
         //interface
         JFrame fenetre = new JFrame();
-        fenetre.setTitle("Robot surfer :p");
+        fenetre.setTitle("Robot surfeur :p");
         fenetre.setSize(600, 500);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setVisible(true);
-        JPanel pan = new JPanel();
+        //JPanel pan = new JPanel();
         JTextField keyWords = new JTextField ("Final Fantasy Sephiroth");
         JTextField url = new JTextField ("https://fr.wikipedia.org/wiki/Square_(entreprise)");
         JRadioButton random = new JRadioButton("Random");
@@ -39,6 +52,10 @@ public abstract class Graphique extends JFrame implements MouseListener {
 
 
         bouton.addActionListener(new ActionListener() {
+        	
+        	/**
+        	 * 
+        	 */
             @Override
             public void actionPerformed(ActionEvent e){
 
@@ -47,7 +64,7 @@ public abstract class Graphique extends JFrame implements MouseListener {
                     if( random.isSelected() == true)
                     {
                         System.out.println("Random est selectionné");
-                        System.setProperty("webdriver.gecko.driver", "D:\\Selenium\\FirefoxDrive\\geckodriver.exe");
+                        System.setProperty("webdriver.gecko.driver", "src\\geckodriver.exe");
                         Navigation Sc = new Navigation();
                         Sc.OpenPage(url.getText());
                         Sc.NavigationRandom();
@@ -56,7 +73,7 @@ public abstract class Graphique extends JFrame implements MouseListener {
                     else if (score.isSelected() == true )
                     {
                         System.out.println("Score est selectionné");
-                        System.setProperty("webdriver.gecko.driver", "D:\\Selenium\\FirefoxDrive\\geckodriver.exe");
+                        System.setProperty("webdriver.gecko.driver", "src\\geckodriver.exe");
                         Navigation Sc = new Navigation();
                         
                         System.out.println(motsCles.length);

@@ -1,25 +1,19 @@
 package navigation;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import extraction.DriverSelenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import extraction.Lien;
 import extraction.Page;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import scoring.*;
-import extraction.Lien;
-import navigation.*;
+import scoring.Aleatoire;
+import scoring.Scoring;
 
 
 public class Navigation{
@@ -37,15 +31,21 @@ public class Navigation{
     WebDriver driver = new FirefoxDriver();
     JavascriptExecutor js = (JavascriptExecutor)driver;
 
-    
+    /**
+     * Ouvre une url dans selenium
+     * @param url
+     */
     public void OpenPage(String url){
-    	
-    	
+
         driver.get(url); //ouvre le navigateur avec l'url passé en parametre
         driver.manage().window().maximize(); //permet de mettre la fenetre en plein écran
         new WebDriverWait(driver, 2);
     }
 
+    /**
+     * Navigation avec un score par mot clé
+     * @param motCles
+     */
     public void NavigationScore(String[] motCles){
     	
         int cpt = 0;
@@ -57,12 +57,11 @@ public class Navigation{
 
         while (visite != true)
         {
-        	
             pageCourante.clearLiens();
              
-            Lien.tocast(driver.findElements(By.xpath("//*[@href]")));// recup tous les lien avec le tag "a"
+            Lien.tocast(driver.findElements(By.xpath("//*[@href]")));  // recup tous les lien avec le tag "a"
 
-             Lien lienFinal = score.points(Page.getLiensDansLaPage(), motCle); // appelle de la fonction qui va scorer les liens entre 0 et 1
+            Lien lienFinal = score.points(Page.getLiensDansLaPage(), motCle); // appelle de la fonction qui va scorer les liens entre 0 et 1
             
             System.out.println(lienFinal.getUrl());
             System.out.println(lienFinal.getTexte());
@@ -83,6 +82,9 @@ public class Navigation{
         MessageFinSiBoucle(hist.getPageDejaVisite().get(cpt-2));
     }
 
+    /**
+     * Navigation aléatoire
+     */
     public void NavigationRandom() {
     	 
     	int cpt = 0;
@@ -90,8 +92,8 @@ public class Navigation{
 
           while(cpt <10 && visite != true) {
 
-              int max=0;
-              int mini=1;
+              //int max=0;
+              //int mini=1;
 
               Lien.tocast(driver.findElements(By.xpath("//*[@href]")));// recup tous les lien avec le tag "a"
               
@@ -115,17 +117,27 @@ public class Navigation{
           MessageFinSiBoucle(hist.getPageDejaVisite().get(cpt-1));
     }
     
+    /**
+     * Affiche un message en fin de programme
+     * @param lien
+     */
     public void MessageFinSiBoucle(Lien lien) {
-    	JOptionPane jop1 = new JOptionPane();
-        JOptionPane.showMessageDialog(null, "La page trouvé à déjà été visiter !", "Message de Fin", JOptionPane.INFORMATION_MESSAGE);
+    	//JOptionPane jop1 = new JOptionPane();
+        JOptionPane.showMessageDialog(null, "La page trouvé à déjà été visité !", "Message de Fin", JOptionPane.INFORMATION_MESSAGE);
         driver.get(lien.getUrl());
     }
      
+    /**
+     * Ralenti le scroll de la page pour faire une navigation "humaine"
+     * @param cord
+     */
     public void scrolling(int cord){
 
         int y2 = 0;
 
-        for (int sec = 0;; sec++) {
+        for (@SuppressWarnings("unused")
+		int sec = 0;; sec++) 
+        {
 
             if(y2+200 >= cord)
                 break;
@@ -136,6 +148,11 @@ public class Navigation{
             new WebDriverWait(driver, 2);
     }
 
+    /**
+     * 
+     * @param time
+     * @throws InterruptedException
+     */
     public void sleep(int time) throws InterruptedException{
             new WebDriverWait(driver, time);
     }
@@ -150,9 +167,12 @@ public class Navigation{
         return false;
     }*/
 
-    public void close() {
-
-        System.out.println("Closing driver");
+    /**
+     * Arrête le Gecko Driver
+     */
+    public void close()
+    {
+        System.out.println("Closing gecko driver");
         driver.quit();
     }
 

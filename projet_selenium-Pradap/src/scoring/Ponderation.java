@@ -3,8 +3,6 @@ package scoring;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
-
 import extraction.Lien;
 
 public interface Ponderation {

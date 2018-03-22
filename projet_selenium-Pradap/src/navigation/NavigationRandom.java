@@ -1,25 +1,10 @@
 package navigation;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import javax.swing.JOptionPane;
-
-import extraction.DriverSelenium;
-import extraction.Lien;
-import extraction.Page;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import extraction.DriverSelenium;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+/**
+ * 
+ * @author valen
+ *
+ */
 public class NavigationRandom {
 
     /*private List<String> visit = new ArrayList<String>();

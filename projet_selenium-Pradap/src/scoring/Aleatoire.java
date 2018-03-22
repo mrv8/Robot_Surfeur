@@ -3,15 +3,15 @@ package scoring;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import extraction.Lien;
 import extraction.Page;
 
 public class Aleatoire implements Ponderation {
 
-	
+	/**
+	 * Récupère aléatoirement un lien
+	 * @return Lien
+	 */
 	public Lien RecupLienAleatoire() {
 		
 		int max=0;
@@ -24,6 +24,7 @@ public class Aleatoire implements Ponderation {
         return LinkChoice;
 		        
 	}
+
 
 	@Override
 	public int compte(String str, String chaine) {

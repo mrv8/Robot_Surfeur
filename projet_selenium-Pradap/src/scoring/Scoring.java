@@ -13,12 +13,24 @@ public class Scoring implements Ponderation{
     //private static ArrayList<String> MotCle;
     //private int pos;
 
+    /**
+     *
+     * @param str
+     * @param chaine
+     * @return int
+     */
     public int compte(String str, String chaine) {
         chaine = chaine+"i";
         String[] tab = chaine.split(str);
         return (tab.length-1);
     }
 
+    /**
+     * Récupère le meilleur lien
+     * @param list
+     * @param motcle
+     * @return Lien
+     */
     public Lien points(List<Lien> list, List<String> motcle){
 
         ArrayList<Integer> Points = new ArrayList<Integer>();
@@ -57,6 +69,12 @@ public class Scoring implements Ponderation{
 		return meilleur_lien(tabPourcentage, AllLinksWithKeyWord);
     }
 
+    /**
+     * Récupère un indice pour le lien
+     * @param tabPourcentage
+     * @param AllLinksWithKeyWord
+     * @return Lien
+     */
 	public Lien meilleur_lien(double [] tabPourcentage, ArrayList<Lien> AllLinksWithKeyWord )
 	{
 		double max = 0.0;
@@ -74,7 +92,11 @@ public class Scoring implements Ponderation{
 		return AllLinksWithKeyWord.get(indice);
 	}
 
-    /*calcule le nombre de mots dans une chaine*/
+    /**
+     * Calcule le nombre de mots dans une chaine
+     * @param href
+     * @return int
+     */
     public int nombreMots(String href) {
         char[] x = new char[href.length()];
         int cmp=1;
@@ -93,7 +115,12 @@ public class Scoring implements Ponderation{
         return cmp;
     }
 
-    /*calcule le pourcentage*/
+    /**
+     * Calcule le pourcentage
+     * @param nombreMot
+     * @param nombreMotCle
+     * @return double
+     */
     public double pourcentage(int nombreMot, int nombreMotCle)
     {
         double res = 0.0;
